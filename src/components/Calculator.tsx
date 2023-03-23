@@ -11,33 +11,179 @@ export default function Calculator() {
               <div className="card-title text-end fs-1">456</div>
 
               <div className="row align-items-center ">
-                <div className="col">AC</div>
-                <div className="col border">+/-</div>
-                <div className="col border">%</div>
-                <div className="col border">/</div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    AC
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    +/-
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    %
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    /
+                  </button>
+                </div>
               </div>
               <div className="row align-items-center ">
-                <div className="col border">7</div>
-                <div className="col border">8</div>
-                <div className="col border">9</div>
-                <div className="col border">x</div>
+                <div className="col">
+                  <button className="btn border">7</button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    8
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    9
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    x
+                  </button>
+                </div>
               </div>
               <div className="row align-items-center ">
-                <div className="col border">4</div>
-                <div className="col border">5</div>
-                <div className="col border">6</div>
-                <div className="col border">+</div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    4
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    5
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    6
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <div className="row align-items-center ">
-                <div className="col border">1</div>
-                <div className="col border">2</div>
-                <div className="col border">3</div>
-                <div className="col border">-</div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    1
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    2
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    3
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    -
+                  </button>
+                </div>
               </div>
               <div className="row align-items-center ">
-                <div className="col border">0</div>
-                <div className="col border">.</div>
-                <div className="col-6 border">=</div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    0
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    .
+                  </button>
+                </div>
+                <div className="col-6">
+                  <button
+                    id=""
+                    type="button"
+                    className="btn border rounded-3 p-3 fs-3"
+                  >
+                    =
+                  </button>
+                </div>
               </div>
             </div>
           </div>
