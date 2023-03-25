@@ -8,26 +8,30 @@ export default function Calculator() {
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-
     const value: string = event.currentTarget.name;
-    switch(value) {
-      case '=':
+    switch (value) {
+      case "=":
         evaluate();
+        break;
+      case "clear":
+        clear();
         break;
       default:
         setInput(input.concat(value));
         break;
-
     }
-
-    
   };
 
   const evaluate = () => {
-    const result = eval(input)
+    const result = eval(input);
     setTotal(result);
-    setInput(input + '=' + result.toString());
-  }
+    setInput(input + "=" + result.toString());
+  };
+
+  const clear = () => {
+    setInput("");
+    setTotal(0);
+  };
 
   return (
     <div className="container-fluid">
