@@ -4,7 +4,7 @@ export default function Calculator() {
   return (
     <div className="container-fluid">
       <div className="row align-items-center vh-100">
-        <div className="col-lg-4 col-md-6 col-sm-8 col-12 mx-auto">
+        <div className="col-lg-4 col-md-6 col-sm-8 col-11 mx-auto">
           <div className="card rounded-5 pt-4 pb-4 px-2 bg-dark shadow-lg">
             <div className="card-body text-center mt-5">
               <div className="card-text text-end fs-6 text-secondary">
@@ -132,9 +132,11 @@ export default function Calculator() {
           </div>
 
           {/* Footer */}
-          <nav className="navbar pb-2 mt-2">
+          <nav className="navbar pb-2 mt-3">
             <div className="container-fluid justify-content-center">
-              <span className="navbar-brand fs-6 text-dark fw-bold">by cwjki</span>
+              <span className="navbar-brand fs-6 text-dark fw-bold">
+                by cwjki
+              </span>
               <a
                 className="navbar-brand"
                 href="https://github.com/cwjki"
