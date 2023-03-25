@@ -3,6 +3,7 @@ import { useState, MouseEvent } from "react";
 export default function Calculator() {
   const [input, setInput] = useState("0");
   const [output, setOutput] = useState("");
+  const [operator, setOperator] = useState(false);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -16,23 +17,39 @@ export default function Calculator() {
         break;
 
       default:
-        if (value === "0" && input === "0") {
-          break;
-        }
-        if (input === "0") {
-          setInput(value);
-        }
-        else {
-          setInput(input.concat(value));
-        }
+        if (operator) {
+          if (/\d/.test(value)) {
+            setOutput(output + value);
+            setOperator(false);
+          } else {
 
-        
+          }
+          setInput(value);
+          
+        } else {
+          if (value === "0" && input === "0") {
+            break;
+          }
+          if (input === "0") {
+            setInput(value);
+            setOutput(value);
+          } else {
+            if (/\d/.test(value)) {
+              setInput(input.concat(value));
+              setOutput(output.concat(value));
+            } else {
+              setOutput(input.concat(value));
+              setInput(value);
+              setOperator(true);
+            }
+          }
+        }
         break;
     }
   };
 
   const evaluate = () => {
-    
+    const result: number = eval(input);
   };
 
   const clear = () => {
