@@ -1,13 +1,11 @@
 import { useState, MouseEvent } from "react";
-import { ModeAwareCache } from "typescript";
 
 export default function Calculator() {
-  const [total, setTotal] = useState(0);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("0");
+  const [output, setOutput] = useState("");
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
     const value: string = event.currentTarget.name;
     switch (value) {
       case "=":
@@ -16,21 +14,30 @@ export default function Calculator() {
       case "clear":
         clear();
         break;
+
       default:
-        setInput(input.concat(value));
+        if (value === "0" && input === "0") {
+          break;
+        }
+        if (input === "0") {
+          setInput(value);
+        }
+        else {
+          setInput(input.concat(value));
+        }
+
+        
         break;
     }
   };
 
   const evaluate = () => {
-    const result = eval(input);
-    setTotal(result);
-    setInput(input + "=" + result.toString());
+    
   };
 
   const clear = () => {
-    setInput("");
-    setTotal(0);
+    setInput("0");
+    setOutput("");
   };
 
   return (
@@ -40,10 +47,10 @@ export default function Calculator() {
           <div className="card rounded-5 pb-4 px-2 bg-dark shadow-lg mt-3">
             <div className="card-body text-center mt-5">
               <div className="card-text text-end fs-6 text-secondary">
-                {input}
+                {output}
               </div>
               <div id="display" className="card-title text-end fs-1 text-info">
-                {total}
+                {input}
               </div>
 
               <div className="row align-items-center gap-2 mt-4 px-1">
