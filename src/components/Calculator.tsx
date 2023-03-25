@@ -19,13 +19,11 @@ export default function Calculator() {
       default:
         if (operator) {
           if (/\d/.test(value)) {
-            setOutput(output + value);
+            setOutput(output.concat(value));
             setOperator(false);
           } else {
-
           }
           setInput(value);
-          
         } else {
           if (value === "0" && input === "0") {
             break;
@@ -38,8 +36,8 @@ export default function Calculator() {
               setInput(input.concat(value));
               setOutput(output.concat(value));
             } else {
-              setOutput(input.concat(value));
               setInput(value);
+              setOutput(output.concat(value));
               setOperator(true);
             }
           }
@@ -49,7 +47,9 @@ export default function Calculator() {
   };
 
   const evaluate = () => {
-    const result: number = eval(input);
+    const result: number = eval(output);
+    setInput(result.toString());
+    setOutput(output + "=" + result.toString());
   };
 
   const clear = () => {
