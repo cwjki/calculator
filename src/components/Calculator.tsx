@@ -189,7 +189,7 @@ export default function Calculator() {
                   id="negative"
                   type="button"
                   className="btn btn-secondary col rounded-4 p-3 fs-3"
-                  onClick={handleClick}
+                  // onClick={handleClick}
                 >
                   +/-
                 </button>
@@ -198,7 +198,7 @@ export default function Calculator() {
                   id="percent"
                   type="button"
                   className="btn btn-secondary col rounded-4 p-3 fs-3"
-                  onClick={handleClick}
+                  // onClick={handleClick}
                 >
                   %
                 </button>
