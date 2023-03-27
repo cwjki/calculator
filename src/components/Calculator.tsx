@@ -21,6 +21,19 @@ export default function Calculator() {
       clear();
       return;
     }
+
+    // need to do
+    if (value === "negative") {
+      alert("not implemented yet :)");
+      return;
+    }
+
+    // need to do
+    if (value === "percent") {
+      alert("not implemented yet :)");
+      return;
+    }
+
     // setting a max amount of digits
     if (input.length > 16 || output.length > 32) {
       setInput("Digit Limit Met");
@@ -57,10 +70,6 @@ export default function Calculator() {
           if (!equals) {
             evaluate();
           }
-          break;
-        case "negative":
-          break;
-        case "percent":
           break;
         case ".":
           // handling the decimal, avoid 2 decimal in the same number
@@ -189,7 +198,7 @@ export default function Calculator() {
                   id="negative"
                   type="button"
                   className="btn btn-secondary col rounded-4 p-3 fs-3"
-                  // onClick={handleClick}
+                  onClick={handleClick}
                 >
                   +/-
                 </button>
@@ -198,7 +207,7 @@ export default function Calculator() {
                   id="percent"
                   type="button"
                   className="btn btn-secondary col rounded-4 p-3 fs-3"
-                  // onClick={handleClick}
+                  onClick={handleClick}
                 >
                   %
                 </button>
