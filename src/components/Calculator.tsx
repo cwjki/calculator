@@ -21,6 +21,13 @@ export default function Calculator() {
       clear();
       return;
     }
+    // setting a max amount of digits
+    if (input.length > 16 || output.length > 32) {
+      setInput("Digit Limit Met");
+      setOutput("Digit Limit Met");
+      setEquals(true);
+      return;
+    }
     // handle the state after a " = " is clicked
     if (equals) {
       if (value !== "=") {
@@ -138,7 +145,7 @@ export default function Calculator() {
       result = math.evaluate(output);
       setOutput(output + "=" + result.toString());
     } catch (error) {
-      result = "NaN"
+      result = "NaN";
       setOutput(result);
     }
     setInput(result.toString());
