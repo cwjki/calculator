@@ -1,4 +1,9 @@
 import { useState, MouseEvent } from "react";
+import { create, all } from 'mathjs'
+
+// adding mathjs to evaluate the maths expressions
+const config = { }
+const math = create(all, config)
 
 export default function Calculator() {
   const [input, setInput] = useState("0");
@@ -73,7 +78,7 @@ export default function Calculator() {
   };
 
   const evaluate = () => {
-    const result: number = eval(output);
+    const result: number = math.evaluate(output);
     setInput(result.toString());
     setOutput(output + "=" + result.toString());
   };
