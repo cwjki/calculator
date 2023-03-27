@@ -7,7 +7,7 @@ const math = create(all, config);
 
 export default function Calculator() {
   const [input, setInput] = useState("0");
-  const [output, setOutput] = useState(" ");
+  const [output, setOutput] = useState("0");
   const [operator, setOperator] = useState(false);
   const [decimal, setDecimal] = useState(false);
   const [equals, setEquals] = useState(false);
@@ -17,34 +17,39 @@ export default function Calculator() {
     event.preventDefault();
     const value: string = event.currentTarget.name;
 
+    if (value === "clear") {
+      clear();
+      return;
+    }
     // handle the state after a " = " is clicked
     if (equals) {
-      // value = operator
-      if (/-|\+|\/|\*/.test(value)) {
-        setOutput(input.concat(value));
-        setInput(value);
-        setOperator(true);
+      if (value !== "=") {
+        // value = operator
+        if (/-|\+|\/|\*/.test(value)) {
+          setOutput(input.concat(value));
+          setInput(value);
+          setOperator(true);
+        }
+        // value = "."
+        else if (value === ".") {
+          setInput("0.");
+          setOutput("0.");
+          setDecimal(true);
+        }
+        // value = digit
+        else {
+          setInput(value);
+          setOutput(value);
+        }
+        setEquals(false);
       }
-      // value = "."
-      else if (value === ".") {
-        setInput("0.");
-        setOutput("0.");
-        setDecimal(true);
-      }
-      // value = digit
-      else {
-        setInput(value);
-        setOutput(value);
-      }
-      setEquals(false);
       return;
     } else {
       switch (value) {
         case "=":
-          evaluate();
-          break;
-        case "clear":
-          clear();
+          if (!equals) {
+            evaluate();
+          }
           break;
         case "negative":
           break;
@@ -128,16 +133,22 @@ export default function Calculator() {
 
   // computes the value of the expression in output
   const evaluate = () => {
-    const result: number = math.evaluate(output);
+    let result: number | string;
+    try {
+      result = math.evaluate(output);
+      setOutput(output + "=" + result.toString());
+    } catch (error) {
+      result = "NaN"
+      setOutput(result);
+    }
     setInput(result.toString());
-    setOutput(output + "=" + result.toString());
     setEquals(true);
   };
 
   // clear all the states
   const clear = () => {
     setInput("0");
-    setOutput("");
+    setOutput("0");
     setOperator(false);
     setDecimal(false);
     setEquals(false);
