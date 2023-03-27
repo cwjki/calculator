@@ -22,6 +22,11 @@ export default function Calculator() {
             setOutput(output.concat(value));
             setOperator(false);
           } else {
+            if (value === "-") {
+              setOutput(output.concat(value));
+            } else {
+              setOutput(output.slice(0, output.length - 1) + value);
+            }
           }
           setInput(value);
         } else {
