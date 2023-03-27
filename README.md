@@ -4,7 +4,7 @@ Fourth project to obtain the Front End Development Libraries certification from 
 
 
 ####  
-![project img]()
+![project img](./public/calculator.png)
 
 
 [Link to the Drum Machine](https://cwjki.github.io/calculator/) 
