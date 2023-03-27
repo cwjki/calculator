@@ -23,9 +23,15 @@ export default function Calculator() {
             setOperator(false);
           } else {
             if (value === "-") {
-              setOutput(output.concat(value));
+              if (!/-|\+|\/|\*/.test(output[output.length - 2])) {
+                setOutput(output.concat(value));
+              }
             } else {
-              setOutput(output.slice(0, output.length - 1) + value);
+              if (/\+|\/|\*/.test(output[output.length - 1])) {
+                setOutput(output.slice(0, output.length - 1) + value);
+              } else if (/-|\+|\/|\*/.test(output[output.length - 2])) {
+                setOutput(output.slice(0, output.length - 2) + value);
+              }
             }
           }
           setInput(value);
