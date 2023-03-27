@@ -10,10 +10,12 @@ export default function Calculator() {
   const [output, setOutput] = useState("");
   const [operator, setOperator] = useState(false);
   const [decimal, setDecimal] = useState(false);
+  const [equals, setEquals] = useState(false);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const value: string = event.currentTarget.name;
+    
     switch (value) {
       case "=":
         evaluate();
@@ -89,6 +91,7 @@ export default function Calculator() {
     const result: number = math.evaluate(output);
     setInput(result.toString());
     setOutput(output + "=" + result.toString());
+    setEquals(true);
   };
 
   const clear = () => {
