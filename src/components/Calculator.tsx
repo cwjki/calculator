@@ -7,25 +7,32 @@ const math = create(all, config);
 
 export default function Calculator() {
   const [input, setInput] = useState("0");
-  const [output, setOutput] = useState("");
+  const [output, setOutput] = useState(" ");
   const [operator, setOperator] = useState(false);
   const [decimal, setDecimal] = useState(false);
   const [equals, setEquals] = useState(false);
 
+  // handle the calculator behavior
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const value: string = event.currentTarget.name;
 
+    // handle the state after a " = " is clicked
     if (equals) {
+      // value = operator
       if (/-|\+|\/|\*/.test(value)) {
         setOutput(input.concat(value));
         setInput(value);
         setOperator(true);
-      } else if (value === ".") {
+      }
+      // value = "."
+      else if (value === ".") {
         setInput("0.");
         setOutput("0.");
         setDecimal(true);
-      } else {
+      }
+      // value = digit
+      else {
         setInput(value);
         setOutput(value);
       }
@@ -44,12 +51,14 @@ export default function Calculator() {
         case "percent":
           break;
         case ".":
+          // handling the decimal, avoid 2 decimal in the same number
           if (!decimal) {
             if (operator) {
               setInput("0.");
               setOutput(output.concat("0."));
               setOperator(false);
             } else {
+              // when the display its empty we need to add the 0 befere the point
               if (output === "") {
                 setOutput("0.");
               } else {
@@ -61,16 +70,25 @@ export default function Calculator() {
           }
           break;
         default:
+          // handle the state after a operator is clicked
           if (operator) {
+            // value = digit
             if (/\d/.test(value)) {
               setOutput(output.concat(value));
               setOperator(false);
-            } else {
+            }
+            // value = operator
+            else {
+              // value = "-"
               if (value === "-") {
+                // max amount of adjacent operators is 2
                 if (!/-|\+|\/|\*/.test(output[output.length - 2])) {
                   setOutput(output.concat(value));
                 }
-              } else {
+              }
+              // value != "-"
+              else {
+                // handling the change of operators
                 if (/\+|\/|\*/.test(output[output.length - 1])) {
                   setOutput(output.slice(0, output.length - 1) + value);
                 } else if (/-|\+|\/|\*/.test(output[output.length - 2])) {
@@ -81,6 +99,7 @@ export default function Calculator() {
             setDecimal(false);
             setInput(value);
           } else {
+            // first click is a zero?
             if (value === "0" && input === "0") {
               break;
             }
@@ -88,10 +107,13 @@ export default function Calculator() {
               setInput(value);
               setOutput(value);
             } else {
+              // value = digit
               if (/\d/.test(value)) {
                 setInput(input.concat(value));
                 setOutput(output.concat(value));
-              } else {
+              }
+              // value = operator
+              else {
                 setInput(value);
                 setOutput(output.concat(value));
                 setOperator(true);
@@ -104,6 +126,7 @@ export default function Calculator() {
     }
   };
 
+  // computes the value of the expression in output
   const evaluate = () => {
     const result: number = math.evaluate(output);
     setInput(result.toString());
@@ -111,11 +134,13 @@ export default function Calculator() {
     setEquals(true);
   };
 
+  // clear all the states
   const clear = () => {
     setInput("0");
     setOutput("");
     setOperator(false);
     setDecimal(false);
+    setEquals(false);
   };
 
   return (
