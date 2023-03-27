@@ -15,75 +15,92 @@ export default function Calculator() {
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const value: string = event.currentTarget.name;
-    
-    switch (value) {
-      case "=":
-        evaluate();
-        break;
-      case "clear":
-        clear();
-        break;
-      case "negative":
-        break;
-      case "percent":
-        break;
-      case ".":
-        if (!decimal) {
+
+    if (equals) {
+      if (/-|\+|\/|\*/.test(value)) {
+        setOutput(input.concat(value));
+        setInput(value);
+        setOperator(true);
+      } else if (value === ".") {
+        setInput("0.");
+        setOutput("0.");
+        setDecimal(true);
+      } else {
+        setInput(value);
+        setOutput(value);
+      }
+      setEquals(false);
+      return;
+    } else {
+      switch (value) {
+        case "=":
+          evaluate();
+          break;
+        case "clear":
+          clear();
+          break;
+        case "negative":
+          break;
+        case "percent":
+          break;
+        case ".":
+          if (!decimal) {
+            if (operator) {
+              setInput("0.");
+              setOutput(output.concat("0."));
+              setOperator(false);
+            } else {
+              if (output === "") {
+                setOutput("0.");
+              } else {
+                setOutput(output.concat("."));
+              }
+              setInput(input.concat("."));
+            }
+            setDecimal(true);
+          }
+          break;
+        default:
           if (operator) {
-            setInput("0.");
-            setOutput(output.concat("0."));
-            setOperator(false);
-          } else {
-            if (output === "") {
-              setOutput("0.");
-            } else {
-              setOutput(output.concat("."));
-            }
-            setInput(input.concat("."));
-          }
-          setDecimal(true);
-        }
-        break;
-      default:
-        if (operator) {
-          if (/\d/.test(value)) {
-            setOutput(output.concat(value));
-            setOperator(false);
-          } else {
-            if (value === "-") {
-              if (!/-|\+|\/|\*/.test(output[output.length - 2])) {
-                setOutput(output.concat(value));
-              }
-            } else {
-              if (/\+|\/|\*/.test(output[output.length - 1])) {
-                setOutput(output.slice(0, output.length - 1) + value);
-              } else if (/-|\+|\/|\*/.test(output[output.length - 2])) {
-                setOutput(output.slice(0, output.length - 2) + value);
-              }
-            }
-          }
-          setDecimal(false);
-          setInput(value);
-        } else {
-          if (value === "0" && input === "0") {
-            break;
-          }
-          if (input === "0") {
-            setInput(value);
-            setOutput(value);
-          } else {
             if (/\d/.test(value)) {
-              setInput(input.concat(value));
               setOutput(output.concat(value));
+              setOperator(false);
             } else {
+              if (value === "-") {
+                if (!/-|\+|\/|\*/.test(output[output.length - 2])) {
+                  setOutput(output.concat(value));
+                }
+              } else {
+                if (/\+|\/|\*/.test(output[output.length - 1])) {
+                  setOutput(output.slice(0, output.length - 1) + value);
+                } else if (/-|\+|\/|\*/.test(output[output.length - 2])) {
+                  setOutput(output.slice(0, output.length - 2) + value);
+                }
+              }
+            }
+            setDecimal(false);
+            setInput(value);
+          } else {
+            if (value === "0" && input === "0") {
+              break;
+            }
+            if (input === "0") {
               setInput(value);
-              setOutput(output.concat(value));
-              setOperator(true);
-              setDecimal(false);
+              setOutput(value);
+            } else {
+              if (/\d/.test(value)) {
+                setInput(input.concat(value));
+                setOutput(output.concat(value));
+              } else {
+                setInput(value);
+                setOutput(output.concat(value));
+                setOperator(true);
+                setDecimal(false);
+              }
             }
           }
-        }
-        break;
+          break;
+      }
     }
   };
 
