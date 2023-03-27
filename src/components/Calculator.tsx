@@ -1,9 +1,9 @@
 import { useState, MouseEvent } from "react";
-import { create, all } from 'mathjs'
+import { create, all } from "mathjs";
 
 // adding mathjs to evaluate the maths expressions
-const config = { }
-const math = create(all, config)
+const config = {};
+const math = create(all, config);
 
 export default function Calculator() {
   const [input, setInput] = useState("0");
@@ -21,6 +21,10 @@ export default function Calculator() {
       case "clear":
         clear();
         break;
+      case "negative":
+        break;
+      case "percent":
+        break;
       case ".":
         if (!decimal) {
           if (operator) {
@@ -28,8 +32,12 @@ export default function Calculator() {
             setOutput(output.concat("0."));
             setOperator(false);
           } else {
+            if (output === "") {
+              setOutput("0.");
+            } else {
+              setOutput(output.concat("."));
+            }
             setInput(input.concat("."));
-            setOutput(output.concat("."));
           }
           setDecimal(true);
         }
