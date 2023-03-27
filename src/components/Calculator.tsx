@@ -4,6 +4,7 @@ export default function Calculator() {
   const [input, setInput] = useState("0");
   const [output, setOutput] = useState("");
   const [operator, setOperator] = useState(false);
+  const [decimal, setDecimal] = useState(false);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -15,7 +16,19 @@ export default function Calculator() {
       case "clear":
         clear();
         break;
-
+      case ".":
+        if (!decimal) {
+          if (operator) {
+            setInput("0.");
+            setOutput(output.concat("0."));
+            setOperator(false);
+          } else {
+            setInput(input.concat("."));
+            setOutput(output.concat("."));
+          }
+          setDecimal(true);
+        }
+        break;
       default:
         if (operator) {
           if (/\d/.test(value)) {
@@ -34,6 +47,7 @@ export default function Calculator() {
               }
             }
           }
+          setDecimal(false);
           setInput(value);
         } else {
           if (value === "0" && input === "0") {
@@ -50,6 +64,7 @@ export default function Calculator() {
               setInput(value);
               setOutput(output.concat(value));
               setOperator(true);
+              setDecimal(false);
             }
           }
         }
@@ -66,6 +81,8 @@ export default function Calculator() {
   const clear = () => {
     setInput("0");
     setOutput("");
+    setOperator(false);
+    setDecimal(false);
   };
 
   return (
