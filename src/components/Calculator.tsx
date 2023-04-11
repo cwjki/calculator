@@ -24,7 +24,10 @@ export default function Calculator() {
 
     // need to do
     if (value === "negative") {
-      alert("not implemented yet :)");
+      const firstChar = input[0];
+      alert(firstChar);
+      if (firstChar === '0') return
+      firstChar === '-' ? setInput(input.slice(1)) : setInput('-' + input);
       return;
     }
 
