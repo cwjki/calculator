@@ -24,10 +24,10 @@ export default function Calculator() {
 
     // need to do
     if (value === "negative") {
-      const firstChar = input[0];
-      alert(firstChar);
-      if (firstChar === '0') return
-      firstChar === '-' ? setInput(input.slice(1)) : setInput('-' + input);
+      alert("not implemented yet :)");
+      // const firstChar = input[0];
+      // if(/0|\+|\/|\*/.test(firstChar)) return;
+      // firstChar === '-' ? setInput(input.slice(1)) : setInput('-' + input);
       return;
     }
 
